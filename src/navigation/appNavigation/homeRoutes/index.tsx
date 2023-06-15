@@ -1,8 +1,8 @@
 import { Route } from "react-router-dom";
 import { HomeScreen } from "../../../screens/homeScreen";
 
-export const homeRoutes = (
+export const homeRoutes: React.ReactElement = (
   <Route>
-    <Route path="homeScreen" element={<HomeScreen />} />
+    <Route path="/" element={<HomeScreen />} />
   </Route>
 );
