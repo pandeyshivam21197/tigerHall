@@ -44,7 +44,7 @@ declare module "@mui/material/Typography" {
 
 declare module "@mui/material/styles" {
   interface Palette {
-    textColors: Palette["primary"];
+    textColor: Palette["primary"];
     component: Palette["primary"];
   }
 

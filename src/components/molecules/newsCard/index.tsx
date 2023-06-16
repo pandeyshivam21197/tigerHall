@@ -10,7 +10,8 @@ import Icons from "../../../assets/icons";
 import { Box } from "@mui/material";
 import { Flag } from "../flag";
 
-interface INewsCard {
+export interface INewsCard {
+  id: number;
   heading: string;
   subHeading: string;
   author: string;
@@ -20,7 +21,7 @@ interface INewsCard {
   durationTime: string;
 }
 
-export const NewsCard: React.FC<INewsCard> = ({
+const NewsCard: React.FC<INewsCard> = ({
   cardMedia,
   heading,
   subHeading,
@@ -31,14 +32,16 @@ export const NewsCard: React.FC<INewsCard> = ({
 }) => {
   const theme = useTheme();
 
+  console.log(theme, "theme");
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card>
       {cardMedia && (
         <Box height={120}>
           <Flag iconSrc={Icons.completionStatus} label={status} />
           <CardMedia
             component="img"
-            height="120"
+            height="100%"
             image={cardMedia}
             alt={cardMedia}
           />
@@ -51,16 +54,16 @@ export const NewsCard: React.FC<INewsCard> = ({
         </Box>
       )}
       <CardContent>
-        <Text variant={"labelBold"} color={theme.palette.textColors.main}>
+        <Text variant={"labelBold"} color={theme.palette.textColor.main}>
           {heading}
         </Text>
-        <Text variant={"labelBold"} color={theme.palette.textColors.main}>
+        <Text variant={"labelBold"} color={theme.palette.textColor.main}>
           {subHeading}
         </Text>
-        <Text variant={"labelBold"} color={theme.palette.textColors.main}>
+        <Text variant={"labelBold"} color={theme.palette.textColor.main}>
           {author}
         </Text>
-        <Text variant="labelBold" color={theme.palette.textColors.main}>
+        <Text variant="labelBold" color={theme.palette.textColor.main}>
           {designation}
         </Text>
       </CardContent>
@@ -71,3 +74,6 @@ export const NewsCard: React.FC<INewsCard> = ({
     </Card>
   );
 };
+
+const newsCard = React.memo(NewsCard);
+export { newsCard as NewsCard };
