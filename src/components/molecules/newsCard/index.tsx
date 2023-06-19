@@ -7,8 +7,9 @@ import CardActions from "@mui/material/CardActions";
 import { Text } from "../../atoms/text";
 import { Icon } from "../../atoms/icon";
 import Icons from "../../../assets/icons";
-import { Box } from "@mui/material";
+import { Box, Theme } from "@mui/material";
 import { Flag } from "../flag";
+import { useStyles } from "./styles";
 
 export interface INewsCard {
   id: number;
@@ -30,28 +31,31 @@ const NewsCard: React.FC<INewsCard> = ({
   status,
   durationTime,
 }) => {
-  const theme = useTheme();
-
-  console.log(theme, "theme");
+  const theme: Theme = useTheme();
+  const styles = useStyles();
 
   return (
-    <Card>
+    <Card className={styles.cardContainer}>
       {cardMedia && (
-        <Box height={120}>
-          <Flag iconSrc={Icons.completionStatus} label={status} />
+        <div className={styles.cardMedia}>
+          <Flag
+            className={styles.completedFlag}
+            iconSrc={Icons.completionStatus}
+            label={status}
+          />
           <CardMedia
+            height="120px"
             component="img"
-            height="100%"
             image={cardMedia}
             alt={cardMedia}
           />
-          <Box>
-            <Box>
+          <div className={styles.statusFlag}>
+            <div className={styles.podCastContainer}>
               <Icon src={Icons.podcast} />
-              <Flag iconSrc={Icons.clock} label={durationTime} />
-            </Box>
-          </Box>
-        </Box>
+            </div>
+            <Flag iconSrc={Icons.clock} label={durationTime} />
+          </div>
+        </div>
       )}
       <CardContent>
         <Text variant={"labelBold"} color={theme.palette.textColor.main}>
@@ -67,7 +71,7 @@ const NewsCard: React.FC<INewsCard> = ({
           {designation}
         </Text>
       </CardContent>
-      <CardActions>
+      <CardActions className={styles.footerActions}>
         <Icon src={Icons.share} />
         <Icon src={Icons.bookmark} />
       </CardActions>

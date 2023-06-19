@@ -1,5 +1,11 @@
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import { darkPalette } from "./darkPalette";
+//@ts-ignore
+import NeueMontrealBold from "../../assets/fonts/NeueMontreal-Bold.otf";
+//@ts-ignore
+import NeueMontrealMedium from "../../assets/fonts/NeueMontreal-Medium.otf";
+//@ts-ignore
+import NeueMontrealRegular from "../../assets/fonts/NeueMontreal-Regular.otf";
 
 export interface TypographyVariantsOptions {
   labelRegular?: React.CSSProperties;
@@ -46,10 +52,12 @@ declare module "@mui/material/styles" {
   interface Palette {
     textColor: Palette["primary"];
     component: Palette["primary"];
+    pageBackground: string;
   }
 
   interface PaletteOptions {
     textColor: PaletteOptions["primary"];
+    pageBackground: string;
     component: PaletteOptions["primary"];
   }
 
@@ -67,38 +75,38 @@ let theme = createTheme({
   typography: {
     fontFamily: "Regular, Medium, Bold",
     labelRegular: {
-      lineHeight: 14.4,
-      fontSize: 12,
+      lineHeight: "14.4px",
+      fontSize: "12px",
       fontWeight: 400,
       fontFamily: "Bold",
     },
     labelBold: {
-      lineHeight: 14.4,
-      fontSize: 12,
+      lineHeight: "14.4px",
+      fontSize: "12px",
       fontWeight: 700,
       fontFamily: "Bold",
     },
     labelMedium: {
-      lineHeight: 14.4,
-      fontSize: 12,
+      lineHeight: "14.4px",
+      fontSize: "12px",
       fontWeight: 700,
       fontFamily: "Bold",
     },
     subHeadingRegular: {
-      lineHeight: 19,
-      fontSize: 16,
+      lineHeight: "19px",
+      fontSize: "16px",
       fontWeight: 400,
       fontFamily: "Bold",
     },
     subHeadingMedium: {
-      lineHeight: 19,
-      fontSize: 16,
+      lineHeight: "19px",
+      fontSize: "16px",
       fontWeight: 500,
       fontFamily: "Bold",
     },
     subHeadingBold: {
-      lineHeight: 19,
-      fontSize: 16,
+      lineHeight: "19px",
+      fontSize: "16px",
       fontWeight: 700,
       fontFamily: "Bold",
     },
@@ -109,19 +117,19 @@ let theme = createTheme({
       @font-face {
   font-family: "Regular";
   src: local("NeueMontreal-Regular"),
-    url("./assets/fonts/NeueMontreal-Regular.otf") format("otf");
+    url(${NeueMontrealRegular}) format("otf");
 }
 
 @font-face {
   font-family: "Medium";
   src: local("NeueMontreal-Regular"),
-    url("./assets/fonts/NeueMontreal-Medium.otf") format("otf");
+    url(${NeueMontrealMedium}) format("otf");
 }
 
 @font-face {
   font-family: "Bold";
   src: local("NeueMontreal-Bold"),
-    url("./assets/fonts/NeueMontreal-Bold.otf") format("otf");
+    url(${NeueMontrealBold}) format("otf");
 }
       `,
     },

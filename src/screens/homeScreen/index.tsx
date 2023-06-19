@@ -3,10 +3,14 @@ import { NewsCardList } from "../../components/organisms/newsCardList";
 import { SearchBar } from "../../components/molecules/searchBar";
 import { fetchNewsCardList } from "../../services/homeServices";
 import { INewsCard } from "../../components/molecules/newsCard";
-import { Box } from "@mui/material";
+import { useStyles } from "./styles";
+import { Loader } from "../../components/atoms/loader";
 
 export const HomeScreen: FC<any> = (): React.ReactElement => {
   const [newsCardList, setNewsCardList] = useState<INewsCard[] | []>([]);
+  const [loading, setLoading] = useState(false);
+
+  const styles = useStyles();
 
   const getNewsCardList = useCallback((searchText = "") => {
     const onDataFetchCallback = (data: any) => {
@@ -42,9 +46,11 @@ export const HomeScreen: FC<any> = (): React.ReactElement => {
         } as INewsCard;
       });
 
+      setLoading(false);
       setNewsCardList(newsCardData);
     };
 
+    setLoading(true);
     fetchNewsCardList(searchText, onDataFetchCallback);
   }, []);
 
@@ -54,9 +60,13 @@ export const HomeScreen: FC<any> = (): React.ReactElement => {
   }, []);
 
   return (
-    <Box>
+    <div className={styles.container}>
+      {loading && <Loader />}
       <SearchBar onSearchCallback={getNewsCardList} />
-      <NewsCardList newsDataList={newsCardList} />
-    </Box>
+      <NewsCardList
+        className={styles.newsCardList}
+        newsDataList={newsCardList}
+      />
+    </div>
   );
 };

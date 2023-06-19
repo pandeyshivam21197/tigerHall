@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import { TypographyPropsVariantOverrides } from "@mui/material/Typography/Typography";
 import React, { FC } from "react";
 
 interface ITextProps {
@@ -7,6 +6,7 @@ interface ITextProps {
   styles?: any;
   children: string;
   variant: any;
+  className?: string;
 }
 
 export const Text: FC<ITextProps> = ({
@@ -14,9 +14,15 @@ export const Text: FC<ITextProps> = ({
   color,
   styles = {},
   variant,
+  className,
 }) => {
   return (
-    <Typography color={color} style={styles} variant={variant}>
+    <Typography
+      className={className}
+      color={color}
+      style={styles}
+      variant={variant}
+    >
       {children}
     </Typography>
   );

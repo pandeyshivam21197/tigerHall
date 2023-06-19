@@ -7,6 +7,7 @@ interface ITextInputProps {
   variant?: TextFieldVariants;
   inputProps?: InputProps;
   onChange: (changeText: string) => void;
+  className?: string;
 }
 
 export const TextInput: FC<ITextInputProps> = ({
@@ -14,6 +15,7 @@ export const TextInput: FC<ITextInputProps> = ({
   variant = "outlined",
   inputProps,
   onChange,
+  className,
 }) => {
   const onTextChange = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -23,6 +25,7 @@ export const TextInput: FC<ITextInputProps> = ({
 
   return (
     <TextField
+      className={className}
       id="outlined-basic"
       label={label}
       variant={variant}
